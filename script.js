@@ -9,17 +9,25 @@ function drawCard() {
     fetch(baseURI)
     .then(res => res.json())
     .then(data => {
+
+        console.log(data)
+        console.log(data.success)
         
         //check if success?
         if (data.success) {
             cardData = data.cards[0];
 
-            const cardImage = createElement('img');
-            cardImage.setAttribut('src', cardData.image);
-            cardDisplay.innerHTML = `
-                ${cardImage}
+            //const cardImage = createElement('img');
+            //cardImage.setAttribut('src', cardData.image);
+            
+            cardDisplay.innerHTML = 
             `
+            <p>somethinghere</p>
+                
+            `
+            
         }
+        console.log('from fetch')
         // else
         //     return 'No card found'
 
@@ -29,7 +37,7 @@ function drawCard() {
 }
 
 
-drawBtn.addEventListener('click', (event) => {
-   console.log(event);
-   // drawCard
+drawBtn.addEventListener('click', () => {
+   console.log('moi');
+   drawCard();
 });
