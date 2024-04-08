@@ -15,16 +15,14 @@ function drawCard() {
         
         //check if success?
         if (data.success) {
+
+            cardDisplay.innerHTML = "";
             cardData = data.cards[0];
 
-            //const cardImage = createElement('img');
-            //cardImage.setAttribut('src', cardData.image);
+            const cardImage = document.createElement('img');
+            cardImage.setAttribute('src', cardData.image);
             
-            cardDisplay.innerHTML = 
-            `
-            <p>somethinghere</p>
-                
-            `
+            cardDisplay.appendChild(cardImage);
             
         }
         console.log('from fetch')
