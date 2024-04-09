@@ -5,37 +5,32 @@ const cardDisplay = document.querySelector('#card-display');
 function drawCard() {
 
     let cardData = {};
+    cardDisplay.innerHTML = "";
 
     fetch(baseURI)
-    .then(res => res.json())
+    .then(res => {
+        if(res.ok)
+                return res.json();
+            throw new Error('Error when fetching') 
+    })
     .then(data => {
-
-        console.log(data)
-        console.log(data.success)
-        
-        //check if success?
         if (data.success) {
 
-            cardDisplay.innerHTML = "";
             cardData = data.cards[0];
-
             const cardImage = document.createElement('img');
             cardImage.setAttribute('src', cardData.image);
-            
             cardDisplay.appendChild(cardImage);
-            
         }
-        console.log('from fetch')
-        // else
-        //     return 'No card found'
-
-
+        else {
+            cardDisplay.innerHTML = "Could not find a card, try again!";
+        }
     })
-    .catch(err => console.log(err))
+    .catch(err => { 
+        console.log(err);
+        cardDisplay.innerHTML = "Something went wrong, try again!";
+    })
 }
 
-
 drawBtn.addEventListener('click', () => {
-   console.log('moi');
    drawCard();
 });
